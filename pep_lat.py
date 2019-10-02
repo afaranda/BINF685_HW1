@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import random as rn
+import myrand as mr
 import math as ma
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -19,19 +20,19 @@ class peptide:
             (0,-1):"S"
         }
         self.mpo=dict([v,k] for k,v in self.opm.items())
-
+        
         # Initialize the peptide, by aligning residues along the X axis
         self.pep = self.pep_init(self.pst)
-
+        
         # Initialize orientations
         self.ori = self.calc_ori(self.pep)
-
+        
         # Initialize distance matrix
         m = [self.pep[i][1] for i in range(0,len(self.pep))]
         self.dst = dm(m,m)
-
+    
     def pep_init(self, peptide):
-        print(peptide)
+        # print(peptide)
         pep=[]
         for r in range(0,len(peptide)):
             pep.append([peptide[r],[r, 0]])
@@ -44,18 +45,18 @@ class peptide:
                 # print("B:", self.pep[j][1])
                 if pep[i][1] == pep[j][1]:
                     return(False)
-
+                    
         for k in range(0, len(ori)):
             x = ori[k]
             if x[0] != 0 and x[1] != 0:
               return(False)
-
+        
         return(True)
 
     def calc_ori(self, pep):
         """
-        Given a list of points in space return the list of directional
-        changes from one point to the next.
+        Given a list of points in space return the list of directional 
+        changes from one point to the next. 
         """
         ori=[]
         for r in range(1, len(pep)):
@@ -64,7 +65,7 @@ class peptide:
            ori.append([q[i] - p[i] for i in range(0,len(p))])
 
         return(ori)
-
+    
     def get_ori_string(self):
         ors = []
         for i in self.ori():
@@ -93,15 +94,15 @@ class peptide:
         a global X, Y coordinate system: values in X increase to the east and
         decrease to the west.  Values in Y increase to the north and decrease
         to the south. The first residue of the peptide is anchored at position
-        0,0.  All subsequent reside positions are defined by integer
+        0,0.  All subsequent reside positions are defined by integer 
         coordinates.
         """
         pep = dc(self.pep)
 
         if len(pep) - len(moves) != 1:
-            print("Invalid move list")
-            return("ER3")
-
+            # print("Invalid move list")
+            return(False)
+        
         for i in range(1,len(moves)):
             po = moves[i-1]
             m = moves[i]
@@ -109,9 +110,10 @@ class peptide:
                 (po == 'E' and m == 'W') or
                 (po == 'S' and m == 'N') or
                 (po == 'W' and m == 'E')):
-                print("Immediate Backtracking is Invalid")
-                return("ER4")
-
+                # print("Immediate Backtracking is Invalid")
+                # return("ER4")
+                return(False)
+        
         cp = [0,0]
         pep[0][1] = cp
         for j in range(1, len(pep)):
@@ -128,7 +130,7 @@ class peptide:
                 pep[j][1] = cp
 
             if moves[j-1] == "W":
-                cp = [cp[i] + [1,0][i] for i in range(0,len(cp))]
+                cp = [cp[i] + [-1,0][i] for i in range(0,len(cp))]
                 pep[j][1] = cp
         return(self.op_update(pep, self.calc_ori(pep)))
     
@@ -186,8 +188,8 @@ class peptide:
 
     def counter(self, r):
         """
-        perform a counter clockwise rotation of the residu
-        about its upstream neighbor; apply drag transition
+        perform a counter clockwise rotation of the residue  
+        about its upstream neighbor; apply drag transition 
         to downstream residues.
         """
         pep=dc(self.pep)
@@ -226,7 +228,7 @@ class peptide:
               ori = self.calc_ori(pep)
 
         else:
-            return("ER2")
+            return(False)
         return(self.op_update(pep, ori))
 
     def calc_energy(self):
@@ -239,12 +241,14 @@ class peptide:
         hdm = hdm[:, hr]
         E = 0 - (sum(hdm[np.where(hdm == 1)]) / 2)
         return(E)
-
+        
 
 class peptide_sim():
-    def __init__(self, pst, maxiter=10, T=10, fname="peptide_data"):
+    def __init__(self, pst, maxiter=10, num = 50,
+                T=10, fname="peptide_data"):
         self.peptide = peptide(pst)
         self.maxiter = maxiter
+        self.num = num
         self.T = T
         self.E = self.peptide.calc_energy()
         self.C = self.peptide.write_config()
@@ -255,7 +259,53 @@ class peptide_sim():
         pr = (ma.exp(1)**-(en / self.T)) / (ma.exp(1)**-(self.E / self.T))
         return(pr)
 
-    def simulate(self):
+    def mutate(self, cf):
+        num=self.num
+        val = {}
+        val["N"]={"N", "E", "W"}
+        val["S"]={"S", "E", "W"}
+        val["E"]={"N", "E", "S"}
+        val["W"]={"N", "W", "S"}
+
+        cf = list(cf)
+        if num < 1 or num > len(cf):
+            print("Wrong number of mutations")
+            return("ER5")
+        
+        mut = rn.sample(range(len(cf)), num)
+        mut.sort()
+        # print(mut)
+        for m in mut:
+            # print(m)
+            if m == 0:
+                a=val[cf[m]]
+                b=val[cf[m+1]]
+                mv = a.intersection(b)
+                # print(mv)
+                mv = mr.choices(list(mv), k=1)[0]
+                cf[m] = mv
+
+            elif m > 0 and m < len(cf)-1:
+                a=val[cf[m]]
+                b=val[cf[m+1]]
+                c=val[cf[m-1]]
+                mv = a.intersection(b)
+                mv = mv.intersection(c)
+                # print(mv)
+                mv = mr.choices(list(mv), k=1)[0]
+                cf[m] = mv
+            
+            elif m == len(cf)-1:
+                a=val[cf[m]]
+                c=val[cf[m-1]]
+                mv = a.intersection(c)
+                # print(mv)
+                mv = mr.choices(list(mv), k=1)[0]
+                cf[m] = mv
+            
+        return(cf)
+    
+    def rotary_simulate(self):
         i = 0
         while i < self.maxiter:
             r = rn.randint(1, len(self.peptide.ori))
@@ -277,6 +327,37 @@ class peptide_sim():
                     self.C = self.peptide.write_config()
                     self.model[self.C]=self.E
 
+    def random_simulate(self):
+        i = 0
+        while i < self.maxiter:
+            cf = self.mutate(self.C)
+            v=self.peptide.write_peptide(cf)
+            if v:
+                # print("hit")
+                i = i + 1
+                en = self.peptide.calc_energy()
+                if en < self.E:
+                    self.E = self.peptide.calc_energy()
+                    self.C = self.peptide.write_config()
+                    self.model[self.C]=self.E
+
+                elif rn.random() < self.boltzman(en):
+                    self.E = self.peptide.calc_energy()
+                    self.C = self.peptide.write_config()
+                    self.model[self.C]=self.E
+
+    def random_pop(self):
+        i=0
+        while i < self.maxiter:
+            cf = self.mutate(self.C)
+            v=self.peptide.write_peptide(cf)
+            if v:
+                # print("hit")
+                i = i + 1
+                self.E = self.peptide.calc_energy()
+                self.C = self.peptide.write_config()
+                self.model[self.C]=self.E
+
     def write_model(self):
         sep="."
         fn = sep.join([self.fname, "txt"])
@@ -286,7 +367,7 @@ class peptide_sim():
 
         df=pd.DataFrame.from_dict(data)
         df.to_csv(fn,index=False)
-
+    
     def plot_hist(self):
         sep="."
         fn = sep.join([self.fname, "png"])
@@ -300,3 +381,8 @@ class peptide_sim():
         plt.ylim(0, 2)
         plt.grid(True)
         plt.savefig(fn)
+          
+
+
+            
+
