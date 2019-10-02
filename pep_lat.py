@@ -306,6 +306,11 @@ class peptide_sim():
         return(cf)
     
     def rotary_simulate(self):
+        """
+        This simulation was based on changing a single
+        residue orientation at a time using the "counter/clockwise"
+        methods.  It proved to be to inefficient 
+        """
         i = 0
         while i < self.maxiter:
             r = rn.randint(1, len(self.peptide.ori))
@@ -326,39 +331,64 @@ class peptide_sim():
                     self.E = self.peptide.calc_energy()
                     self.C = self.peptide.write_config()
                     self.model[self.C]=self.E
+                else:
+                    # print(en, self.E, "rejected")
+                    self.peptide.write_peptide(self.C)
+
 
     def random_simulate(self):
-        i = 0
-        while i < self.maxiter:
+        """
+        This function generates a set of samples that aught to follow
+        a boltzman distribution.  At each iteration, the orientation of
+        a variable number of residues is modified (default 50). 
+        """
+        while len(self.model) < self.maxiter:
+            # modify current configuration
             cf = self.mutate(self.C)
+            
+            # Update / Validate modified configuration
             v=self.peptide.write_peptide(cf)
             if v:
-                # print("hit")
-                i = i + 1
                 en = self.peptide.calc_energy()
-                if en < self.E:
-                    self.E = self.peptide.calc_energy()
-                    self.C = self.peptide.write_config()
-                    self.model[self.C]=self.E
 
-                elif rn.random() < self.boltzman(en):
+                # Accept sample if new energy < previous
+                if en < self.E:
+                    # print(en, self.E)
                     self.E = self.peptide.calc_energy()
                     self.C = self.peptide.write_config()
                     self.model[self.C]=self.E
+                
+                # Otherwise accept sample with boltzman probability
+                elif rn.random() < self.boltzman(en):
+                    # print(en, self.E, self.boltzman(en))
+                    self.E = self.peptide.calc_energy()
+                    self.C = self.peptide.write_config()
+                    self.model[self.C]=self.E
+                    
+                # Or reject it entirely
+                else:
+                    # print(en, self.E, "rejected")
+                    self.peptide.write_peptide(self.C)
+                    
 
     def random_pop(self):
-        i=0
-        while i < self.maxiter:
+        """
+        This function generates a set of random samples
+        used as an initial population for the genetic algorithm
+        """
+        while len(self.model) < self.maxiter:
             cf = self.mutate(self.C)
             v=self.peptide.write_peptide(cf)
             if v:
                 # print("hit")
-                i = i + 1
                 self.E = self.peptide.calc_energy()
                 self.C = self.peptide.write_config()
                 self.model[self.C]=self.E
 
     def write_model(self):
+        """
+        Write out tabulated samples for plotting
+        """
         sep="."
         fn = sep.join([self.fname, "txt"])
         data = {}
@@ -367,22 +397,5 @@ class peptide_sim():
 
         df=pd.DataFrame.from_dict(data)
         df.to_csv(fn,index=False)
-    
-    def plot_hist(self):
-        sep="."
-        fn = sep.join([self.fname, "png"])
-        x=list(self.model.values())
-        x=[0-x[i] for i in range(0,len(x))]
-        n, bins, patches = plt.hist(x, 14, density=True, facecolor='g', alpha=0.75)
-        plt.xlabel('Energy ')
-        plt.ylabel('Probability')
-        plt.title('Distribution of Energy Values')
-        plt.xlim(6, 20 )
-        plt.ylim(0, 2)
-        plt.grid(True)
-        plt.savefig(fn)
-          
-
-
             
 

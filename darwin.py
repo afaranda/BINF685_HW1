@@ -84,10 +84,11 @@ class darwin:
                 ave = sum([pe, qe])/2
                 for i in [p, q]:
                     ie = i.calc_energy()
+                    #print(ie, ave)
                     if ie <= ave:
                         newpop[i.write_config()] = ie
                     elif rn.random() < self.boltzman(ie, ave, t):
-                        print(self.boltzman(ie, ave, t))
+                        # print(self.boltzman(ie, ave, t))
                         newpop[i.write_config()] = ie
                 
                 t = t / (ma.log(n))

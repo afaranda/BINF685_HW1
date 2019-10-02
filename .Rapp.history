@@ -1,0 +1,681 @@
+for (i in 0:10){#
+	y<- (i/-1)* 1:10 + 120#
+	print(y)#
+}
+for (i in 0:10:2){#
+	y<- (i/-1)* 1:10 + 120#
+	print(y)#
+}
+for (i in 0:10){#
+	y<- (i/-1)* 1:10 + 120#
+	print(y)#
+}
+for (i in 0:10){#
+	y<- (i/-1)* seq(0, 9, step=3) + 120#
+	print(y)#
+}
+for (i in 0:10){
+y<- (i/-1)* seq(0, 9, step=3) + 120
+}
+for (i in 0:10){#
+	y<- (i/-1)* seq(0, 9, step=3) + 120#
+	print(y)#
+}
+warnings()
+for (i in 0:10){#
+	y<- (i/-1)* seq(0, 9,by=3) + 120#
+	print(y)#
+}
+for (i in 0:10){#
+	y<- (i/-1)* seq(0, 6,by=3) + 120#
+	print(y)#
+}
+for (i in 0:10){#
+	y<- (i/-1)* seq(0, 6,by=3) + 120#
+		df<-data.frame(#
+			conditon=factor(rep(c("None", "Bleach", "Bleach"), each=5), levels=c("None", "Bleach")),#
+			duration=rep(c(0,0,30), each=5),#
+			count=c(#
+				rpois(5, y[1]), #
+				rpois(5, y[2]),#
+				rpois(5, y[3])#
+			)#
+		)#
+		model<-glm(count ~ condition + duration, df, family="poisson")#
+}
+for (i in 0:10){#
+	y<- (i/-1)* seq(0, 6,by=3) + 120#
+		df<-data.frame(#
+			condition=factor(rep(c("None", "Bleach", "Bleach"), each=5), levels=c("None", "Bleach")),#
+			duration=rep(c(0,0,30), each=5),#
+			count=c(#
+				rpois(5, y[1]), #
+				rpois(5, y[2]),#
+				rpois(5, y[3])#
+			)#
+		)#
+		model<-glm(count ~ condition + duration, df, family="poisson")#
+}
+x<-c("GeneID", "description", "FC", "logFC", "S1_GeneCount", "S2_GeneCount", "S3_GeneCount")
+x
+y<-setdiff(x, c("GeneID", "FC"))
+y
+x<-c(x,y)
+x
+x<-c("GeneID", "description", "FC", "logFC", "S1_GeneCount", "S2_GeneCount", "S3_GeneCount")
+x
+y<-setdiff(x, c("GeneID", "FC"))
+y
+x<-c(c("GeneID", "FC"), y)
+x
+z<-c("GeneID", "ensmebl_gene_id", "description")
+R
+x<-data.frame(a=c(1,2,3), b=c(4,5,6))
+x
+names(x)
+names(x) - "b"
+names(x) + "b"
+setdiff(names(x), "b")
+x<-data.frame(a=c(1,2,3), b=c(4,5,6), c=c(7,8,9), d=c(10,11,12))
+x
+x<-x[,setdiff(names(x, "b"))]
+x<-x[,setdiff(names(x), "b"))]
+x<-x[,setdiff(names(x), "b")]
+x
+print(paste("hello \n", "goodbye"))
+rpois(25,10)
+rpois(10, 25)
+rnbinom
+rnbinom(25,10)
+rnbinom(25,10, 0.5)
+sample(rpois(25,1000), 10)
+sample(rpois(1000, 25), 10)
+Age = sample(c(rpois(1000, 25), rpois(1000, 45), rpois(1000, 65)), 1000)
+Age
+plot(Age)
+hist(Age)
+Age = sample(c(rpois(100, 25), rpois(1500, 45), rpois(1000, 65)), 1000)
+hist(Age)
+Age = sample(c(rpois(100, 25), rpois(1500, 45), rpois(1200, 65)), 1000)
+hist(Age)
+y=sample(x('Male', 'Female'), 1000, replace=T, prob=0.5)
+y=sample(c('Male', 'Female'), 1000, replace=T, prob=0.5)
+y=sample(c('Male', 'Female'), 1000, replace=T, prob=0.5, 0.5)
+y=sample(c('Male', 'Female'), 1000, replace=T, prob=c(0.5, 0.5))
+y
+sum(y[y=='Male'])
+sum(y=='Male')
+sum(y=='Female')
+y=sample(c('Male', 'Female'), 1000, replace=T, prob=c(0.5, 0.5))
+sum(y=='Female')
+y=sample(c('Male', 'Female'), 1000, replace=T, prob=c(0.5, 0.5))
+sum(y=='Female')
+rnorm(1000)
+rnorm(1000) * 137
+rnorm(1000)
+rnorm(1000) * 137
+rnorm(10)+1
+rnorm(10)
+rnorm(10, 1)
+rnorm(10, 10, 10)
+rnorm(10, 10, 1)
+mean(137, 185)
+mean(c(137, 185))
+rnorm(162, 10)
+rnorm(10, 162, 10)
+rnorm(10, 162, 170-162)
+f=rnorm(1000, 162, 170-162); m=rnorm(1000,178, 185-177 )
+sample(m,1)
+sample(m,2)
+length(m)
+x=2
+df<-data.frame(#
+	Transaction = 1:1000#
+	Age = sample(c(rpois(100, 25), rpois(1500, 45), rpois(1200, 65)), 1000)#
+	Sex = Sex#
+	Height_cm = sapply(Sex, function(S) ifelse(S=='Male', sample(m,1), sample(f,1) ))#
+)
+df<-data.frame(#
+	Transaction = 1:1000,#
+	Age = sample(c(rpois(100, 25), rpois(1500, 45), rpois(1200, 65)), 1000),#
+	Sex = Sex,#
+	Height_cm = sapply(Sex, function(S) ifelse(S=='Male', sample(m,1), sample(f,1) ))#
+)
+set.seed=(011790)#
+Sex=sample(c('Male', 'Female'), 1000, replace=T, prob=c(0.5, 0.5))#
+f=rnorm(1000, 162, 170-162); m=rnorm(1000,178, 185-177 )#
+df<-data.frame(#
+	Transaction = 1:1000,#
+	Age = sample(c(rpois(100, 25), rpois(1500, 45), rpois(1200, 65)), 1000),#
+	Sex = Sex,#
+	Height_cm = sapply(Sex, function(S) ifelse(S=='Male', sample(m,1), sample(f,1) ))#
+)
+hist(df$Height)
+hist(df[df$Sex='Male', 'Height_cm'])
+hist(df[df$Sex=='Male', 'Height_cm'])
+hist(df[df$Sex=='Female', 'Height_cm'])
+ifelse(Sex=='Male', 0.5, 0)
+ifelse(Sex=='Male', 0.5, 0)*10
+ifelse(Sex=='Male', 5, 0) + Height / 2
+set.seed=(011790)#
+Sex=sample(c('Male', 'Female'), 1000, replace=T, prob=c(0.5, 0.5))#
+f=rnorm(1000, 162, 170-162); m=rnorm(1000,178, 185-177 )#
+Height = sapply(Sex, function(S) ifelse(S=='Male', sample(m,1), sample(f,1) ))
+ifelse(Sex=='Male', 5, 0) + Height / 2
+ifelse(Sex=='Male', 5, 0) + (Height / 2)
+hist(ifelse(Sex=='Male', 5, 0) + (Height / 2))
+hist(ifelse(Sex=='Male', 2, 0) + (Height / 2))
+hist(ifelse(Sex=='Male', 1.5, 0) + (Height / 2))
+ifelse(Sex=='Male', 1.5, 0) + (Height / 2) - (df$Age / 10)
+hist(ifelse(Sex=='Male', 1.5, 0) + (Height / 2) - (df$Age / 10))
+set.seed=(011790)#
+Sex=sample(c('Male', 'Female'), 1000, replace=T, prob=c(0.5, 0.5))#
+f=rnorm(1000, 162, 170-162); m=rnorm(1000,178, 185-177 )#
+Height = sapply(Sex, function(S) ifelse(S=='Male', sample(m,1), sample(f,1) ))#
+Weight = ifelse(Sex=='Male', 1.5, 0) + (Height / 2) - (df$Age / 10)#
+df<-data.frame(#
+	Transaction = 1:1000,#
+	Age = sample(c(rpois(100, 25), rpois(1500, 45), rpois(1200, 65)), 1000),#
+	Sex = Sex,#
+	Height = Height#
+	Weight = Weight#
+)
+set.seed=(011790)#
+Sex=sample(c('Male', 'Female'), 1000, replace=T, prob=c(0.5, 0.5))#
+f=rnorm(1000, 162, 170-162); m=rnorm(1000,178, 185-177 )#
+Height = sapply(Sex, function(S) ifelse(S=='Male', sample(m,1), sample(f,1) ))#
+Weight = ifelse(Sex=='Male', 1.5, 0) + (Height / 2) - (df$Age / 10)#
+df<-data.frame(#
+	Transaction = 1:1000,#
+	Age = sample(c(rpois(100, 25), rpois(1500, 45), rpois(1200, 65)), 1000),#
+	Sex = Sex,#
+	Height = Height,#
+	Weight = Weight#
+)
+df
+plot(df, Height ~ Weight)
+plot(df$Height, df$Weight)
+plot(df$Height, df$Age)
+plot(df$Height, df$Sex)
+boxplot(df, Height ~ Sex)
+boxplot(df$Height ~ df$Sex)
+x=sample(1:15)
+x
+x=c('T38', 'T256', 'T307', 'T117', 'T138', 'T263', 'T290', 'T308', 'T326', 'T387', 'T697, 'T284')
+x=c('T38', 'T256', 'T307', 'T117', 'T138', 'T263', 'T290', 'T308', 'T326', 'T387', 'T697', 'T284', 'T190', 'T317', 'T876')
+sample(x, 5, replace=T)
+set.seed(011790)
+x=c('T38', 'T256', 'T307', 'T117', 'T138', 'T263', 'T290', 'T308', 'T326', 'T387', 'T697', 'T284', 'T190', 'T317', 'T876')
+sample(x, 5, replace=T)
+df<-read.table("/Users/afaranda/Desktop/Untitled.txt")
+df<-read.table("/Users/afaranda/Desktop/CISC683_HW2_Table.txt")
+df<-read.table("/Users/afaranda/Desktop/CISC683_HW2_Table.txt", header=T)
+df<-read.table("/Users/afaranda/Desktop/CISC683_HW2_Table.txt", header=T, quote="")
+df
+database<-list(#
+	a=c('a', 'b', 'c', 'd'),#
+	b=c('a', 'b'),#
+	c=c('a', 'c', 'd'),#
+	d=c('c', 'b','d'),#
+	e=c('b', 'c'),#
+	f=c('b', 'd'), #
+	g=c('c', 'd'),#
+	h=c('a', 'c', 'd', 'e'),#
+	i=c('c', 'e'),#
+	j=c('b', 'c', 'e'),#
+	k=c('d', 'e'),#
+	l=c('b', 'e'),#
+	m=c('a', 'e'),#
+	n=c('b', 'd')#
+)
+database
+database[[n]]
+database[['a']]
+grep('a',database[['a']])
+grep('f',database[['a']])
+grepl('f',database[['a']])
+grepl('a',database[['a']])
+sum(database[['a']] == 'a')
+v
+sum(database[['a']] == 'v')
+grep('a', database)
+length(grep('a', database))
+length(grep('b', database))
+length(grep('c', database))
+length(grep('d', database))
+length(grep('e', database))
+minSup=3#
+I=c('a', 'b', 'c', 'd', 'e')#
+findFrequentOneItem<-function(D, I, M){#
+	L1 <-list()#
+	count<-0#
+	for i in I{#
+		if(length(grep(i, database))	 > M){#
+			L1<-append(L1, i)#
+		}		#
+	}#
+}
+L1<-findFrequentOneItem(database, I, minSup)
+findFrequentOneItem<-function(D, I, M){#
+	L1 <-list()#
+	count<-0#
+	for i in I{#
+		if(length(grep(i, database))	 > M){#
+			L1<-append(L1, i)#
+		}		#
+	}#
+}
+minSup=3#
+I=c('a', 'b', 'c', 'd', 'e')#
+findFrequentOneItem<-function(D, I, M){#
+	L1 <-list()#
+	count<-0#
+	for(i in I){#
+		if(length(grep(i, database))	 > M){#
+			L1<-append(L1, i)#
+		}		#
+	}#
+}
+L1<-findFrequentOneItem(database, I, minSup)
+L1
+I=c('a', 'b', 'c', 'd', 'e')#
+findFrequentOneItem<-function(D, I, M){#
+	L1 <-list()#
+	count<-0#
+	for(i in I){#
+		if(length(grep(i, database))	 > M){#
+			L1<-append(L1, i)#
+		}		#
+	}#
+	return(L1)#
+}#
+L1<-findFrequentOneItem(database, I, minSup)
+L1
+minSup=3#
+I=c('a', 'b', 'c', 'd', 'e')#
+findFrequentOneItem<-function(D, I, M){#
+	L1 <-list()#
+	count<-0#
+	for(i in I){#
+		if(length(grep(i, database))	 > M){#
+			L1[[i]]<-length(grep(i, database))	#
+		}		#
+	}#
+	return(L1)#
+}#
+L1<-findFrequentOneItem(database, I, minSup)
+L1
+names(L1)
+minSup=6#
+I=c('a', 'b', 'c', 'd', 'e')#
+findFrequentOneItem<-function(D, I, M){#
+	L1 <-list()#
+	count<-0#
+	for(i in I){#
+		if(length(grep(i, database))	 > M){#
+			L1[[i]]<-length(grep(i, database))	#
+		}		#
+	}#
+	return(L1)#
+}#
+L1<-findFrequentOneItem(database, I, minSup)
+L1
+minSup=6#
+I=c('a', 'b', 'c', 'd', 'e')#
+findFrequentOneItem<-function(D, I, M){#
+	L1 <-list()#
+	count<-0#
+	for(i in I){#
+		if(length(grep(i, database))	 => M){#
+			L1[[i]]<-length(grep(i, database))	#
+		}		#
+	}#
+	return(L1)#
+}#
+L1<-findFrequentOneItem(database, I, minSup)
+minSup=6#
+I=c('a', 'b', 'c', 'd', 'e')#
+findFrequentOneItem<-function(D, I, M){#
+	L1 <-list()#
+	count<-0#
+	for(i in I){#
+		if(length(grep(i, database))	 >= M){#
+			L1[[i]]<-length(grep(i, database))	#
+		}		#
+	}#
+	return(L1)#
+}#
+L1<-findFrequentOneItem(database, I, minSup)
+L1
+database<-list(#
+	a=c('a', 'b', 'c', 'd'),#
+	b=c('a', 'b'),#
+	c=c('a', 'c', 'd'),#
+	d=c('c', 'b','d'),#
+	e=c('b', 'c'),#
+	f=c('b', 'd'), #
+	g=c('c', 'd'),#
+	h=c('a', 'c', 'd', 'e'),#
+	i=c('c', 'e'),#
+	j=c('b', 'c', 'e'),#
+	k=c('d', 'e'),#
+	l=c('b', 'e'),#
+	m=c('a', 'e'),#
+	n=c('b', 'd')#
+)#
+minSup=6#
+I=c('a', 'b', 'c', 'd', 'e')#
+findFrequentOneItem<-function(D, I, M){#
+	L1 <-list()#
+	count<-0#
+	for(i in I){#
+		if(length(grep(i, database))	 >= M){#
+			L1[[i]]<-length(grep(i, database))	#
+		}		#
+	}#
+	return(L1)#
+}#
+L1<-findFrequentOneItem(database, I, minSup)
+L1
+database<-list(#
+	a=c('a', 'b', 'c', 'd'),#
+	b=c('a', 'b'),#
+	c=c('a', 'c', 'd'),#
+	d=c('c', 'b','d'),#
+	e=c('b', 'c'),#
+	f=c('b', 'd'), #
+	g=c('c', 'd'),#
+	h=c('a', 'c', 'd', 'e'),#
+	i=c('c', 'e'),#
+	j=c('b', 'c', 'e'),#
+	k=c('d', 'e'),#
+	l=c('b', 'e'),#
+	m=c('a', 'e'),#
+	n=c('b', 'd')#
+)#
+minSup=6#
+I=c('a', 'b', 'c', 'd', 'e')#
+findFrequentOneItem<-function(D, I, M){#
+	L1 <-list()#
+	count<-0#
+	for(i in I){#
+		if(length(grep(i, database))	 >= M){#
+			L1[[i]]<-length(grep(i, database))	#
+		}		#
+	}#
+	return(L1)#
+}#
+L1<-findFrequentOneItem(database, I, 4)
+L1
+names(L1)
+names(L1)[order(unlist(L1))]
+names(L1)[order(unlist(L1), decreasing=F)]
+test<-data.frame(#
+	sample=c(paste("S",1:15,sep=''))#
+)
+test
+test<-data.frame(#
+	sample=c(paste("S",1:15,sep=''))#
+	genotype=c(rep('WT',9), rep('KO',6))#
+)
+test<-data.frame(#
+	sample=c(paste("S",1:15,sep='')),#
+	genotype=c(rep('WT',9), rep('KO',6))#
+)
+test
+test<-data.frame(#
+	sample=c(paste("S",1:15,sep='')),#
+	genotype=c(rep('WT',9), rep('KO',6)),#
+	time=c(rep(c(0,24,48), each=3), rep(c(0,48), each=3))#
+)
+test
+getGroupList<-function(df, sampCol='sample', fcCols=c('genotype', 'time')){#
+	nfactors = length(fcCols)#
+	levelList<-list()#
+	for (f in fcCols){#
+		levelList[[f]]<-levels(as.factor(df[[samplCol]]))#
+	}#
+	levelList#
+}
+getGroupList(df=test)
+getGroupList<-function(df, sampCol='sample', fcCols=c('genotype', 'time')){#
+	nfactors = length(fcCols)#
+	levelList<-list()#
+	for (f in fcCols){#
+		levelList[[f]]<-levels(as.factor(df[[sampCol]]))#
+	}#
+	levelList#
+}
+getGroupList(df=test)
+getGroupList<-function(df, sampCol='sample', fcCols=c('genotype', 'time')){#
+	nfactors = length(fcCols)#
+	levelList<-list()#
+	for (f in fcCols){#
+		levelList[[f]]<-levels(as.factor(df[[f]]))#
+	}#
+	levelList#
+}
+getGroupList(df=test)
+class(getGroupList(df=test)[[1]]_
+class(getGroupList(df=test)[[1]])
+expand.grid
+expand.grid(test)
+expand.grid(test[,c("genotype", "time")])
+getwd()
+wd<-getwd
+wd<-getwd()
+wd
+paste(wd,'Diff', sep='/')
+s<-9.699202
+s
+347/s
+(347/s)/1.185
+library(BiocInstaller)
+biocLite('polyester')
+q()
+plotCluster<-function(mat, ktable, k, c=1, ft){#
+	# Get cluster statistics #
+	clustMeans<-getClusterStat(mat, ktable, k, applyFun='mean')#
+	clustSDs<-getClusterStat(mat, ktable, k, applyFun='sd')#
+	clustSize<-getClusterStat(mat, ktable, k, applyFun='length')#
+	# Drop Count, Cluster columns from statistics tables#
+	clustMeans<-clustMeans[,setdiff(names(clustMeans), c('cluster', 'count'))]#
+	clustSDs<-clustSDs[,setdiff(names(clustSDs), c('cluster', 'count'))]#
+	clustSize<-clustSize[,setdiff(names(clustSize), c('cluster', 'count'))]#
+#
+	# Transpose #
+	Mean<-as.data.frame(t(clustMeans))[c]#
+	names(Mean)<-'Mean'#
+	StDev<-as.data.frame(t(clustSDs))[c]#
+	names(StDev)<-'StDev'#
+	Size<-as.data.frame(t(clustSize))[c]#
+	names(Size)<-'Size'#
+	df<-merge(Mean, StDev, by=0)#
+	row.names(df)<-df$Row.names#
+	df<-df[,setdiff(names(df), 'Row.names')]#
+	df<-merge(df, Size, by=0 )#
+	row.names(df)<-df$Row.names#
+	df<-df[,setdiff(names(df), 'Row.names')]#
+	row.names(ft) <-ft$Sample_Number#
+	df$Group <- ft[row.names(df),'Sample_Number' ]#
+	df#
+	#boxplot(mean ~ )#
+}
+silhouette
+library(cluster)
+silhouette
+data(ruspini)
+pr4<-pam(ruspini, 4)
+pr4
+plot(si)
+si<-silhouette(pr4)
+si
+plot(si)
+pr4<-pam(ruspini, 10)
+si<-silhouette(pr4)
+plot(si)
+si<-silhouette(pr4)
+?pam
+library(edgeR)
+edgeR
+library(edgeR, verbose=T)
+session.info()
+sessionInfo
+sessionInfo()
+library(dplyr)
+library(reshape2)
+library(cluster)
+library(sva)
+session.info()
+sessionInfo()
+ComBat()
+library(GEOQuery)
+library(GEOquery)
+library(BiocInstaller)
+biocLite('GEOQuery')
+biocLite('GEOquery')
+library(GEOquery)
+gse<-getGEO("GSE29402")
+gse<-getGEO("GSE111430")
+setwd('Desktop/BINF685_HW1')
+source("/Users/afaranda/Desktop/plot_histograms.R")
+list.files(pattern = "peptide_data")
+for(f in list.files(pattern = "peptide_data")){
+}
+# Import Data Sets and Plot Histograms#
+for(f in list.files(pattern = "peptide_data")){#
+      temp<-gsub("peptide_data_", "", f)#
+      temp<-gsub(".txt","",temp)#
+#
+      df <-read.csv(f)#
+      png(paste("peptide_data_",temp,".png", sep=""))#
+      hist(#
+	(0-df$Energy), freq = FALSE,#
+	xlab = "Energy (Sign inverted)",#
+	main = paste(#
+	     "Distribution of Energy values \n over", #
+	     row(df), "random configurations at temperature", temp#
+	), #
+	ylim = c(0, 0.7),#
+	col = "red"#
+	)#
+	dev.off()#
+}
+temp
+for(f in list.files(pattern = "peptide_data")){#
+      temp<-gsub("peptide_data_", "", f)#
+      temp<-gsub(".txt","",temp)#
+#
+      df <-read.csv(f)#
+      png(paste("peptide_data_",temp,".png", sep=""))#
+      hist(#
+	(0-df$Energy), freq = FALSE,#
+	xlab = "Energy (Sign inverted)",#
+	main = paste(#
+	     "Distribution of Energy values \n over", #
+	     nrow(df), "random configurations at temperature", temp#
+	), #
+	ylim = c(0, 0.7),#
+	col = "red"#
+	)#
+	dev.off()#
+}
+for(f in list.files(pattern = "peptide_data*txt")){
+}
+# Import Data Sets and Plot Histograms#
+for(f in list.files(pattern = "peptide_data*txt")){#
+      temp<-gsub("peptide_data_", "", f)#
+      temp<-gsub(".txt","",temp)#
+#
+      df <-read.csv(f)#
+      png(paste("peptide_data_",temp,".png", sep=""))#
+      hist(#
+	(0-df$Energy), freq = FALSE,#
+	xlab = "Energy (Sign inverted)",#
+	main = paste(#
+	     "Distribution of Energy values \n over", #
+	     nrow(df), "random configurations at temperature", temp#
+	), #
+	ylim = c(0, 0.7),#
+	col = "red"#
+	)#
+	dev.off()#
+}
+# Import Data Sets and Plot Histograms#
+for(f in list.files(pattern = "peptide_data*txt")){#
+      temp<-gsub("peptide_data_", "", f)#
+      temp<-gsub(".txt","",temp)#
+#
+      df <-read.csv(f)#
+      png(paste("peptide_hist_",temp,".png", sep=""))#
+      hist(#
+	(0-df$Energy), freq = FALSE,#
+	xlab = "Energy (Sign inverted)",#
+	main = paste(#
+	     "Distribution of Energy values \n over", #
+	     nrow(df), "random configurations at temperature", temp#
+	), #
+	ylim = c(0, 0.7),#
+	col = "red"#
+	)#
+	dev.off()#
+}
+# Import Data Sets and Plot Histograms#
+for(f in list.files(pattern = "peptide_data")){#
+      temp<-gsub("peptide_data_", "", f)#
+      temp<-gsub(".txt","",temp)#
+#
+      df <-read.csv(f)#
+      png(paste("peptide_hist_",temp,".png", sep=""))#
+      hist(#
+	(0-df$Energy), freq = FALSE,#
+	xlab = "Energy (Sign inverted)",#
+	main = paste(#
+	     "Distribution of Energy values \n over", #
+	     nrow(df), "random configurations at temperature", temp#
+	), #
+	ylim = c(0, 0.7),#
+	col = "red"#
+	)#
+	dev.off()#
+}
+# Import Data Sets and Plot Histograms#
+for(f in list.files(pattern = "peptide_data")){#
+      temp<-gsub("peptide_data_", "", f)#
+      temp<-gsub(".txt","",temp)#
+#
+      df <-read.csv(f)#
+      png(paste("peptide_hist_",temp,".png", sep=""))#
+      hist(#
+	(0-df$Energy), freq = FALSE,#
+	xlab = "Energy (Sign inverted)",#
+	main = paste(#
+	     "Distribution of Energy values \n over", #
+	     nrow(df), "random configurations at temperature", temp#
+	), #
+	ylim = c(0, 0.8),#
+	col = "red"#
+	)#
+	dev.off()#
+}
+# Import Data Sets and Plot Histograms#
+for(f in list.files(pattern = "peptide_data")){#
+      temp<-gsub("peptide_data_", "", f)#
+      temp<-gsub(".txt","",temp)#
+#
+      df <-read.csv(f)#
+      png(paste("peptide_hist_",temp,".png", sep=""))#
+      hist(#
+		(0-df$Energy), freq = FALSE,#
+		xlab = "Energy (Sign inverted)",#
+		main = paste(#
+	    		"Distribution of Energy values \n over", #
+	     	nrow(df), "random configurations at temperature", temp#
+		), #
+		ylim = c(0, 0.8),#
+		col = "red"#
+	)#
+	dev.off()#
+}
+df
+table(df$Energy)

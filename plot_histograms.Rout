@@ -1,0 +1,45 @@
+
+R version 3.3.3 (2017-03-06) -- "Another Canoe"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> # Import Data Sets and Plot Histograms
+> for(f in list.files(pattern = "peptide_data")){
++       temp<-gsub("peptide_data_", "", f)
++       temp<-gsub(".txt","",temp)
++ 
++       df <-read.csv(f)
++       png(paste("peptide_hist_",temp,".png", sep=""))
++       hist(
++ 		(0-df$Energy), freq = FALSE,
++ 		xlab = "Energy (Sign inverted)",
++ 		main = paste(
++ 	    		"Distribution of Energy values \n over", 
++ 	     	nrow(df), "random configurations at temperature", temp
++ 		), 
++ 		ylim = c(0, 0.8),
++ 		col = "red"
++ 	)
++ 	dev.off()
++ }
+> 
+> 
+> proc.time()
+   user  system elapsed 
+  0.307   0.037   0.355 
